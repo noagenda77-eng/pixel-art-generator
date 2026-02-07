@@ -56,13 +56,72 @@ async function generateDynamicPrompt() {
     try {
         const exclusions = recentTopics.length > 0 ? `Do NOT use these recent topics: ${recentTopics.join(', ')}` : "";
 
+        const styles = [
+            // Art Styles
+            'Cyberpunk', 'Vaporwave', 'Fantasy', 'Dark Souls', 'Studio Ghibli',
+            'Retro Sci-Fi', 'Steampunk', 'Noir', 'Zen Garden', 'Post-Apocalyptic',
+            'Underwater', 'Space Western', 'Horror', 'Abstract Geometry',
+            'Minimalist', 'Isometric', 'Glitch Art', 'Surrealism', 'Gothic',
+            'Art Deco', 'Biopunk', 'Solarpunk', 'Synthwave', 'Medieval',
+            'Prehistoric', 'Candy Land', 'Dreamcore', 'Lovecraftian',
+            '8-bit RPG', '16-bit Platformer', 'Ukiyo-e (Japanese Woodblock)',
+            'Liminal Space', 'High Fantasy', 'Low Poly', 'Desert Wasteland',
+            'Bauhaus', 'Cubism', 'Impressionist', 'Pixel Noir', 'Alien Flora',
+            'Brutalism', 'Constructivism', 'Fauvism', 'De Stijl', 'Op Art',
+            'Precisionism', 'Rococo', 'Baroque', 'Renaissance', 'Utopian',
+            'Dystopian', 'Cyber-Noir', 'Acidwave', 'Outrun', 'Lo-Fi',
+            'Pixel Horror', 'Eldritch', 'Cosmic Horror', 'High Tech Low Life',
+            'Bio-Organic', 'Crystalline', 'Liquid Metal', 'Papercraft',
+            'Origami', 'Claymation', 'Voxel', 'Low Resolution', 'Glitchcore',
+            'Webcore', 'Frutiger Aero', 'Y2K Aesthetic', 'Memphis Design',
+            'Industrial', 'Organic Architecture', 'Fractal', 'Kaleidoscopic',
+            'Vector Art', 'Chalk Drawing', 'Oil Painting', 'Watercolor',
+            'stained glass', 'mosaic', 'tapestry', 'blueprint', 'diagram',
+            'thermal vision', 'x-ray', 'sonar', 'lidar', 'point cloud'
+        ];
+        const times = [
+            'Sunset', 'Midnight', 'Dawn', 'Stormy Afternoon', 'Starry Night',
+            'Foggy Morning', 'Eclipse', 'Golden Hour', 'Blue Hour',
+            'During a Meteor Shower', 'Under a Blood Moon', 'High Noon',
+            'Twilight', 'Pitch Black with Neon Lights', 'Sunrise',
+            'During a Blizzard', 'In the middle of a Sandstorm', 'During an Aurora',
+            'During a Solar Flare', 'In the Eye of a Storm', 'Post-Heat Death',
+            'The Big Bang', 'Jurassic Period', 'Year 3000', 'Second before Impact',
+            'Time Freeze', 'The Golden Age', 'Industrial Revolution',
+            'Feudal Japan', 'Wild West', 'Roaring 20s', '80s Arcade', 'Neon Future',
+            'During an Alien Invasion', 'Zombie Apocalypse', 'Nuclear Winter',
+            'After the Rain', 'Before the Storm', 'Eternal Night', 'Perpetual Day',
+            'In a Dream', 'In a Nightmare', 'Inside a Computer Simulation',
+            'At the End of Time', 'During a Parade', 'During a Festival'
+        ];
+        const mood = [
+            'Melancholic', 'Energetic', 'Peaceful', 'Eerie', 'Cozy',
+            'Mysterious', 'Dreamy', 'Chaotic', 'Nostalgic', 'Romantic',
+            'Lonely', 'Vibrant', 'Zen', 'Hopeful', 'Desolate',
+            'Whimsical', 'Terrifying', 'Serene', 'Bustling', 'Quiet',
+            'Etherial', 'Foreboding', 'Festive', 'Tranquil',
+            'Nihilistic', 'Euphoric', 'Anxious', 'Serendipitous', 'Melodramatic',
+            'Stoic', 'Hysterical', 'Zen-like', 'Claustrophobic', 'Agoraphobic',
+            'Heartbreaking', 'Victorious', 'Defeated', 'Confused', 'Enlightened',
+            'Rebellious', 'Obedient', 'Wild', 'Tame', 'Ancient', 'Futuristic',
+            'Divine', 'Cursed', 'Blessed', 'Haunted', 'Alive', 'Dead'
+        ];
+
+        const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+        const randomTime = times[Math.floor(Math.random() * times.length)];
+        const randomMood = mood[Math.floor(Math.random() * mood.length)];
+
         const prompt = `
-            Generate a creative idea for a 192x108 (16:9) pixel art animation.
-            Strictly follow the format: "[Object/Creature] in [Setting]".
-            Keep it clean and minimalist, but interesting.
-            Examples: "red dragon in snowy cave", "spaceship flying over mars", "duck floating on pond".
+            Generate a creative, UNIQUE idea for a 192x108 (16:9) pixel art animation.
+            
+            Theme: A ${randomMood} scene in the style of ${randomStyle}, set during ${randomTime}.
+            
+            Strictly follow the format: "[Object/Creature/Event] in [Setting]".
+            Keep it clean and minimalist, but visually striking.
+            AVOID GENERIC IDEAS like "duck on pond" or "car on road". Go wild!
+            Examples: "neon cyborg smoking in rain", "floating island with waterfall", "ghost train passing through graveyard", "giant mech repairing itself".
             ${exclusions}
-            Output ONLY the description. Keep it under 8 words.
+            Output ONLY the description. Keep it under 8-10 words.
         `;
         const result = await model.generateContent(prompt);
         const response = await result.response;

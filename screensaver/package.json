@@ -1,0 +1,27 @@
+{
+    "name": "pixel-art-screensaver",
+    "version": "1.0.0",
+    "description": "Pixel Art Generator Screensaver Wrapper",
+    "main": "index.js",
+    "scripts": {
+        "start": "electron . /S",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder --win --x64"
+    },
+    "keywords": [
+        "screensaver",
+        "electron"
+    ],
+    "author": "Pixel Art Generator",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^28.0.0",
+        "electron-builder": "^24.9.1"
+    },
+    "build": {
+        "appId": "com.pixelart.screensaver",
+        "win": {
+            "target": "portable"
+        }
+    }
+}

@@ -84,3 +84,44 @@ Your app saves files locally (`public/gen`). Serverless options (App Engine, Clo
         sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
         ```
     -   Or change your code to run on port 80 (requires `sudo`).
+
+---
+
+# How to Update Your App (Routine Maintenance)
+
+When you make changes to the code (e.g., changing the prompt, fixing bugs), follow these steps to deploy the update to your server:
+
+## 1. On Your Computer (Local)
+Push your changes to GitHub:
+```bash
+git add .
+git commit -m "Update description"
+git push
+```
+
+## 2. On Your Server (Remote)
+Connect to your server via SSH and run these commands:
+
+1.  **Go to the folder:**
+    ```bash
+    cd pixel-art-generator
+    ```
+2.  **Pull the latest code:**
+    ```bash
+    git pull
+    ```
+    *(If it asks for username/password, you might need to use a Personal Access Token or set up SSH keys)*
+
+3.  **Install new dependencies (if added):**
+    ```bash
+    npm install
+    ```
+
+4.  **Restart the App:**
+    ```bash
+    pm2 restart pixel-art
+    ```
+
+**That's it!** The server will now be running your new code.
+If you changed `server.js` logic (like the prompt), the next generated image will use the new logic.
+If you changed `public/script.js` (frontend), users will see it after they refresh their browser.
