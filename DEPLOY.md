@@ -125,3 +125,17 @@ Connect to your server via SSH and run these commands:
 **That's it!** The server will now be running your new code.
 If you changed `server.js` logic (like the prompt), the next generated image will use the new logic.
 If you changed `public/script.js` (frontend), users will see it after they refresh their browser.
+
+## 3. Resetting Everything (Force New Animations)
+If you updated the prompts and want to clear out the old boring animations immediately:
+
+1.  **Delete the old files:**
+    ```bash
+    # If inside the pixel-art-generator folder:
+    rm public/gen/*.js
+    ```
+2.  **Restart the app:**
+    ```bash
+    pm2 restart pixel-art
+    ```
+    *The app will automatically detect the folder is empty and generate 20 brand new ones!*

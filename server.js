@@ -107,21 +107,33 @@ async function generateDynamicPrompt() {
             'Divine', 'Cursed', 'Blessed', 'Haunted', 'Alive', 'Dead'
         ];
 
-        const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-        const randomTime = times[Math.floor(Math.random() * times.length)];
-        const randomMood = mood[Math.floor(Math.random() * mood.length)];
+        // Pick ONE category at random
+        const categories = ['style', 'time', 'mood'];
+        const chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+
+        let themeDescription = "";
+        if (chosenCategory === 'style') {
+            const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+            themeDescription = `Style: ${randomStyle}`;
+        } else if (chosenCategory === 'time') {
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+            themeDescription = `Time: ${randomTime}`;
+        } else {
+            const randomMood = mood[Math.floor(Math.random() * mood.length)];
+            themeDescription = `Mood: ${randomMood}`;
+        }
 
         const prompt = `
             Generate a creative, UNIQUE idea for a 192x108 (16:9) pixel art animation.
             
-            Theme: A ${randomMood} scene in the style of ${randomStyle}, set during ${randomTime}.
+            Constraint: Use ONLY this single theme constraint: ${themeDescription}.
             
             Strictly follow the format: "[Object/Creature/Event] in [Setting]".
-            Keep it clean and minimalist, but visually striking.
-            AVOID GENERIC IDEAS like "duck on pond" or "car on road". Go wild!
-            Examples: "neon cyborg smoking in rain", "floating island with waterfall", "ghost train passing through graveyard", "giant mech repairing itself".
+            Keep it clean and minimalist.
+            AVOID GENERIC IDEAS like "duck on pond".
+            Examples: "red dragon in snowy cave", "spaceship flying over mars", "duck floating on pond".
             ${exclusions}
-            Output ONLY the description. Keep it under 8-10 words.
+            Output ONLY the description. Strictly keep it UNDER 6 WORDS.
         `;
         const result = await model.generateContent(prompt);
         const response = await result.response;
