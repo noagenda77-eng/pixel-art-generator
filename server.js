@@ -58,18 +58,10 @@ async function generateDynamicPrompt() {
 
         const styles = [
             '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
-            'Atari 2600', 'Vector Arcade', 'Cel Shaded', 'Hand Drawn Indie', 'CRT Filter', 'Scanlines',
-            'LCD Screen', 'Dithering', 'Isometric', '2.5D', 'Paper Mario Style', 'Y2K Aesthetic',
-            'Glitch Art', 'Retro FPS', 'Text Adventure', 'ASCII Art', 'Wireframe', 'Minecraft Style',
-            'Roblox Style', 'N64 Blur', 'Sega Genesis', 'SNES Mode 7', 'Commodore 64',
-            'Virtual Boy Red', 'EGA Graphics', 'Amiga HAM', 'Neo Geo', 'ZX Spectrum',
-            'MS-DOS', 'Famicom', 'Intellivision', 'ColecoVision', 'Pico-8',
-            'GB Studio', 'Mode 13h', 'VooDoo Graphics', 'Early 3D', 'Sega Saturn',
-            'Dreamcast', 'GameCube', 'Xbox Original', 'PS2', 'PSP',
-            'Vectrex', 'Odyssey 2', 'Apple II', 'Commodore PET', 'TI-99/4A',
-            'BBC Micro', 'Atari ST', 'Sharp X68000', 'FM Towns', 'PC-98',
-            'Wonderswan', 'Game Gear', 'Lynx', 'Jaguar', '3DO',
-            'CD-i', 'LaserDisc', 'Text Mode', 'ASCII Roguelike', 'ANSI Art'
+            'Atari 2600', 'Vector Arcade','LCD Screen', 'Isometric', '2.5D', 'Y2K Aesthetic',
+            'Glitch Art', 'Text Adventure', 'Minecraft Style', 'N64 Blur', 'SNES Mode 7', 'Commodore 64',
+            'Virtual Boy Red', 'EGA Graphics', 'Early 3D',
+            'Vectrex', 'PC-98', 'ASCII Roguelike'
         ];
         const levels = [
             'Tutorial Level', 'Boss Arena', 'Safe Room', 'Item Shop', 'Character Select Screen',
