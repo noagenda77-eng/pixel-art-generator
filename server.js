@@ -86,23 +86,18 @@ async function generateDynamicPrompt() {
             'Sprite', 'Texture', 'Mesh', 'Polygon', 'Shader'
         ];
 
-        // Pick TWO categories at random
-        const allCategories = ['style', 'level', 'element'];
-        // Shuffle and pick 2
-        const shuffled = allCategories.sort(() => 0.5 - Math.random());
-        const selectedCategories = shuffled.slice(0, 2);
+        // Always include Style, plus one other category
+        const otherCategories = ['level', 'element'];
+        const secondCategory = otherCategories[Math.floor(Math.random() * otherCategories.length)];
 
-        let descriptions = [];
+        // Always pick a style
+        const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+        let descriptions = [`Style: ${randomStyle}`];
 
-        if (selectedCategories.includes('style')) {
-            const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-            descriptions.push(`Style: ${randomStyle}`);
-        }
-        if (selectedCategories.includes('level')) {
+        if (secondCategory === 'level') {
             const randomLevel = levels[Math.floor(Math.random() * levels.length)];
             descriptions.push(`Setting: ${randomLevel}`);
-        }
-        if (selectedCategories.includes('element')) {
+        } else {
             const randomElement = elements[Math.floor(Math.random() * elements.length)];
             descriptions.push(`Object/Mechanic: ${randomElement}`);
         }
