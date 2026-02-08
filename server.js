@@ -58,28 +58,19 @@ async function generateDynamicPrompt() {
 
         const styles = [
             '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
-            'Atari 2600', 'Vector Arcade','LCD Screen', 'Isometric', '2.5D', 'Y2K Aesthetic',
+            'Atari 2600', 'Vector Arcade', 'LCD Screen', 'Isometric', '2.5D', 'Y2K Aesthetic',
             'Glitch Art', 'Text Adventure', 'Minecraft Style', 'N64 Blur', 'SNES Mode 7', 'Commodore 64',
             'Virtual Boy Red', 'EGA Graphics', 'Early 3D',
             'Vectrex', 'PC-98', 'ASCII Roguelike'
         ];
         const levels = [
             'Tutorial Level', 'Boss Arena', 'Safe Room', 'Item Shop', 'Character Select Screen',
-            'Underwater Level', 'Lava Castle', 'Ice World', 'Sky Fortress', 'Sewers',
+            'Underwater Level', 'Lava Castle', 'Ice World', 'Sewers',
             'Dungeon', 'Forest Zone', 'Desert Temple', 'Space Station', 'Cyber City',
-            'Haunted Mansion', 'Racing Track', 'Bonus Stage', 'Glitch World', 'Dev Room',
-            'Empty Server', 'Corrupted Save File', 'Waiting Lobby', 'Final Destination',
-            'Secret Level', 'Retro Arcade', 'Esports Arena', 'Speedrun Route', 'Hub World',
+            'Haunted Mansion', 'Racing Track', 'Bonus Stage', 'Waiting Lobby', 'Final Destination',
+            'Secret Level', 'Retro Arcade', 'Esports Arena', 'Hub World',
             'Loading Screen', 'Game Over Screen', 'Victory Podium', 'Inventory Screen', 'Skill Tree',
-            'Map Screen', 'Cutscene', 'QTE Sequence', 'Crafting Bench', 'Loot Cave', 'Gachapon Shop',
-            'Toxic Swamp', 'Volcano Interior', 'Cloud City', 'Casino Zone', 'Construction Site',
-            'Abandoned Hospital', 'Military Base', 'Alien Mothership', 'Parallel Dimension', 'Dream World',
-            'Mirror Mode', 'Upside Down Castle', 'Rainbow Road', 'Ghost Valley', 'Mushroom Kingdom',
-            'Green Hill Zone', 'Dust 2', 'Nuketown', 'Facing Worlds', 'Facility',
-            'Lost Woods', 'Water Temple', 'Spirit Temple', 'Shadow Temple', 'Fire Temple',
-            'Gerudo Valley', 'Hyrule Field', 'Kakariko Village', 'Lon Lon Ranch', 'Zora Domain',
-            'Death Mountain', 'Goron City', 'Kokiri Forest', 'Temple of Time', 'Castle Courtyard',
-            'Ganon Tower', 'Inside the Deku Tree', 'Jabu-Jabu Belly', 'Bottom of the Well', 'Ice Cavern'
+            'Map Screen', 'Cutscene', 'QTE Sequence'
         ];
         const elements = [
             'Power-up', 'Health Potion', 'Mana Potion', 'Epic Loot', 'Quest Item',
@@ -158,6 +149,9 @@ async function generateAnimation() {
             
             VISUAL STYLE: ${style}
             The animation MUST strictly adhere to the "${style}" visual style.
+            
+            IMPORTANT: Do NOT use flashing, strobing, or rapid full-screen color changes. 
+            Keep the background stable. Use smooth transitions.
             
             The \`frame\` argument is an incrementing integer. 
             Do not use any external libraries. Use only standard Canvas API. 
