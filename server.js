@@ -124,20 +124,25 @@ async function generateDynamicPrompt() {
         recentTopics.push(topic);
         if (recentTopics.length > 50) recentTopics.shift();
 
-        return topic;
+        // Return both topic and style
+        return { topic, style: randomStyle };
     } catch (error) {
         console.error("Error generating prompt:", error);
-        return "neon cat in dark alley"; // Fallback
+        return { topic: "neon cat in dark alley", style: "Cyberpunk" }; // Fallback
     }
 }
 
 async function generateAnimation() {
     try {
-        const topic = await generateDynamicPrompt();
-        console.log(`Generating animation for: ${topic}`);
+        const { topic, style } = await generateDynamicPrompt();
+        console.log(`Generating animation for: ${topic} (Style: ${style})`);
 
         const prompt = `
             Write a Javascript function named \`draw(ctx, frame)\` that draws a 192x108 pixel art animation of "${topic}" on the provided 2D context \`ctx\`. 
+            
+            VISUAL STYLE: ${style}
+            The animation MUST strictly adhere to the "${style}" visual style.
+            
             The \`frame\` argument is an incrementing integer. 
             Do not use any external libraries. Use only standard Canvas API. 
             The canvas size is strictly 192x108.
