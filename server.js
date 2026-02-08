@@ -56,7 +56,8 @@ async function generateDynamicPrompt() {
     try {
         const exclusions = recentTopics.length > 0 ? `Do NOT use these recent topics: ${recentTopics.join(', ')}` : "";
 
-        '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
+        const styles = [
+            '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
             'Atari 2600', 'Vector Arcade', 'Cel Shaded', 'Hand Drawn Indie', 'CRT Filter', 'Scanlines',
             'LCD Screen', 'Dithering', 'Isometric', '2.5D', 'Paper Mario Style', 'Y2K Aesthetic',
             'Glitch Art', 'Retro FPS', 'Text Adventure', 'ASCII Art', 'Wireframe', 'Minecraft Style',
