@@ -23,6 +23,33 @@ html {
     justify-content: center;
     align-items: center;
     aspect-ratio: 16/9;
+    position: relative;
+    /* For absolute positioning of overlay */
+}
+
+#prompt-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    /* Small pixel text */
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    /* Black outline for readability */
+    pointer-events: none;
+    /* Let clicks pass through */
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
+    z-index: 10;
+}
+
+#prompt-overlay.faded {
+    opacity: 0;
 }
 
 canvas {

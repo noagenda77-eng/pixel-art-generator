@@ -164,10 +164,13 @@ async function generateAnimation() {
             return; // Skip saving bad generation
         }
 
+        // Prepend the prompt as a comment for the frontend to read
+        const fileContent = `// PROMPT: ${topic} (Style: ${style})\n${code}`;
+
         const filename = `anim_${Date.now()}.js`;
         const filepath = path.join(GEN_DIR, filename);
 
-        fs.writeFileSync(filepath, code);
+        fs.writeFileSync(filepath, fileContent);
         console.log(`Generated and saved: ${filename}`);
 
         cleanupOldFiles();

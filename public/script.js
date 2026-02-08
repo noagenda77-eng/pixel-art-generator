@@ -42,6 +42,25 @@ function loadAnimation(index) {
     fetch(`/gen/${animationFile}`)
         .then(res => res.text())
         .then(scriptContent => {
+            // Extract Prompt
+            const firstLine = scriptContent.split('\n')[0];
+            let promptText = "";
+            if (firstLine.startsWith('// PROMPT:')) {
+                promptText = firstLine.replace('// PROMPT:', '').trim();
+            }
+
+            // Update Overlay
+            const overlay = document.getElementById('prompt-overlay');
+            if (overlay) {
+                overlay.innerText = promptText;
+                overlay.classList.remove('faded');
+
+                // Fade out after 4 seconds
+                setTimeout(() => {
+                    overlay.classList.add('faded');
+                }, 4000);
+            }
+
             // Check if there is a running loop and stop it
             if (requestID) cancelAnimationFrame(requestID);
 
