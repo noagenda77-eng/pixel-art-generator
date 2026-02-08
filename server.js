@@ -57,71 +57,57 @@ async function generateDynamicPrompt() {
         const exclusions = recentTopics.length > 0 ? `Do NOT use these recent topics: ${recentTopics.join(', ')}` : "";
 
         const styles = [
-            // Art Styles
-            'Cyberpunk', 'Vaporwave', 'Fantasy', 'Dark Souls', 'Studio Ghibli',
-            'Retro Sci-Fi', 'Steampunk', 'Noir', 'Zen Garden', 'Post-Apocalyptic',
-            'Underwater', 'Space Western', 'Horror', 'Abstract Geometry',
-            'Minimalist', 'Isometric', 'Glitch Art', 'Surrealism', 'Gothic',
-            'Art Deco', 'Biopunk', 'Solarpunk', 'Synthwave', 'Medieval',
-            'Prehistoric', 'Candy Land', 'Dreamcore', 'Lovecraftian',
-            '8-bit RPG', '16-bit Platformer', 'Ukiyo-e (Japanese Woodblock)',
-            'Liminal Space', 'High Fantasy', 'Low Poly', 'Desert Wasteland',
-            'Bauhaus', 'Cubism', 'Impressionist', 'Pixel Noir', 'Alien Flora',
-            'Brutalism', 'Constructivism', 'Fauvism', 'De Stijl', 'Op Art',
-            'Precisionism', 'Rococo', 'Baroque', 'Renaissance', 'Utopian',
-            'Dystopian', 'Cyber-Noir', 'Acidwave', 'Outrun', 'Lo-Fi',
-            'Pixel Horror', 'Eldritch', 'Cosmic Horror', 'High Tech Low Life',
-            'Bio-Organic', 'Crystalline', 'Liquid Metal', 'Papercraft',
-            'Origami', 'Claymation', 'Voxel', 'Low Resolution', 'Glitchcore',
-            'Webcore', 'Frutiger Aero', 'Y2K Aesthetic', 'Memphis Design',
-            'Industrial', 'Organic Architecture', 'Fractal', 'Kaleidoscopic',
-            'Vector Art', 'Chalk Drawing', 'Oil Painting', 'Watercolor',
-            'stained glass', 'mosaic', 'tapestry', 'blueprint', 'diagram',
-            'thermal vision', 'x-ray', 'sonar', 'lidar', 'point cloud'
+            '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
+            'Atari 2600', 'Vector Arcade', 'Cel Shaded', 'Hand Drawn Indie', 'CRT Filter', 'Scanlines',
+            'LCD Screen', 'Dithering', 'Isometric', '2.5D', 'Paper Mario Style', 'Y2K Aesthetic',
+            'Glitch Art', 'Retro FPS', 'Text Adventure', 'ASCII Art', 'Wireframe', 'Minecraft Style',
+            'Roblox Style', 'N64 Blur', 'Sega Genesis', 'SNES Mode 7', 'Commodore 64'
         ];
-        const times = [
-            'Sunset', 'Midnight', 'Dawn', 'Stormy Afternoon', 'Starry Night',
-            'Foggy Morning', 'Eclipse', 'Golden Hour', 'Blue Hour',
-            'During a Meteor Shower', 'Under a Blood Moon', 'High Noon',
-            'Twilight', 'Pitch Black with Neon Lights', 'Sunrise',
-            'During a Blizzard', 'In the middle of a Sandstorm', 'During an Aurora',
-            'During a Solar Flare', 'In the Eye of a Storm', 'Post-Heat Death',
-            'The Big Bang', 'Jurassic Period', 'Year 3000', 'Second before Impact',
-            'Time Freeze', 'The Golden Age', 'Industrial Revolution',
-            'Feudal Japan', 'Wild West', 'Roaring 20s', '80s Arcade', 'Neon Future',
-            'During an Alien Invasion', 'Zombie Apocalypse', 'Nuclear Winter',
-            'After the Rain', 'Before the Storm', 'Eternal Night', 'Perpetual Day',
-            'In a Dream', 'In a Nightmare', 'Inside a Computer Simulation',
-            'At the End of Time', 'During a Parade', 'During a Festival'
+        const levels = [
+            'Tutorial Level', 'Boss Arena', 'Safe Room', 'Item Shop', 'Character Select Screen',
+            'Underwater Level', 'Lava Castle', 'Ice World', 'Sky Fortress', 'Sewers',
+            'Dungeon', 'Forest Zone', 'Desert Temple', 'Space Station', 'Cyber City',
+            'Haunted Mansion', 'Racing Track', 'Bonus Stage', 'Glitch World', 'Dev Room',
+            'Empty Server', 'Corrupted Save File', 'Waiting Lobby', 'Final Destination',
+            'Secret Level', 'Retro Arcade', 'Esports Arena', 'Speedrun Route', 'Hub World',
+            'Loading Screen', 'Game Over Screen', 'Victory Podium', 'Inventory Screen', 'Skill Tree',
+            'Map Screen', 'Cutscene', 'QTE Sequence', 'Crafting Bench', 'Loot Cave', 'Gachapon Shop'
         ];
-        const mood = [
-            'Melancholic', 'Energetic', 'Peaceful', 'Eerie', 'Cozy',
-            'Mysterious', 'Dreamy', 'Chaotic', 'Nostalgic', 'Romantic',
-            'Lonely', 'Vibrant', 'Zen', 'Hopeful', 'Desolate',
-            'Whimsical', 'Terrifying', 'Serene', 'Bustling', 'Quiet',
-            'Etherial', 'Foreboding', 'Festive', 'Tranquil',
-            'Nihilistic', 'Euphoric', 'Anxious', 'Serendipitous', 'Melodramatic',
-            'Stoic', 'Hysterical', 'Zen-like', 'Claustrophobic', 'Agoraphobic',
-            'Heartbreaking', 'Victorious', 'Defeated', 'Confused', 'Enlightened',
-            'Rebellious', 'Obedient', 'Wild', 'Tame', 'Ancient', 'Futuristic',
-            'Divine', 'Cursed', 'Blessed', 'Haunted', 'Alive', 'Dead'
+        const elements = [
+            'Power-up', 'Health Potion', 'Mana Potion', 'Epic Loot', 'Quest Item',
+            'NPC', 'Final Boss', 'Mini Boss', 'Trash Mob', 'Speedrunner',
+            'Noob', 'Pro Player', 'Streamer', 'Griefer', 'Camper',
+            'Save Point', 'Checkpoint', 'Spawn Point', 'Hitbox', 'Bug/Glitch',
+            'Lag', 'High Score', 'Achievement', 'Easter Egg', 'Cheat Code',
+            'Dialogue Box', 'Health Bar', 'Minimap', 'Crosshair', 'Combo Counter',
+            'Critical Hit', 'Double Jump', 'Wall Run', 'Rocket Jump', 'Teabagging',
+            'Rage Quit', 'Speed Potion', 'Extra Life', 'Game Cartridge', 'Joystick',
+            'Keyboard & Mouse', 'VR Headset', 'CRT Monitor', 'Pixel', 'Voxel',
+            'Sprite', 'Texture', 'Mesh', 'Polygon', 'Shader'
         ];
 
-        // Pick ONE category at random
-        const categories = ['style', 'time', 'mood'];
-        const chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+        // Pick TWO categories at random
+        const allCategories = ['style', 'level', 'element'];
+        // Shuffle and pick 2
+        const shuffled = allCategories.sort(() => 0.5 - Math.random());
+        const selectedCategories = shuffled.slice(0, 2);
 
-        let themeDescription = "";
-        if (chosenCategory === 'style') {
+        let descriptions = [];
+
+        if (selectedCategories.includes('style')) {
             const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-            themeDescription = `Style: ${randomStyle}`;
-        } else if (chosenCategory === 'time') {
-            const randomTime = times[Math.floor(Math.random() * times.length)];
-            themeDescription = `Time: ${randomTime}`;
-        } else {
-            const randomMood = mood[Math.floor(Math.random() * mood.length)];
-            themeDescription = `Mood: ${randomMood}`;
+            descriptions.push(`Style: ${randomStyle}`);
         }
+        if (selectedCategories.includes('level')) {
+            const randomLevel = levels[Math.floor(Math.random() * levels.length)];
+            descriptions.push(`Setting: ${randomLevel}`);
+        }
+        if (selectedCategories.includes('element')) {
+            const randomElement = elements[Math.floor(Math.random() * elements.length)];
+            descriptions.push(`Object/Mechanic: ${randomElement}`);
+        }
+
+        const themeDescription = descriptions.join(" + ");
 
         const prompt = `
             Generate a creative, UNIQUE idea for a 192x108 (16:9) pixel art animation.

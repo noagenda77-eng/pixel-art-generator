@@ -139,3 +139,10 @@ If you updated the prompts and want to clear out the old boring animations immed
     pm2 restart pixel-art
     ```
     *The app will automatically detect the folder is empty and generate 20 brand new ones!*
+
+## 4. Monitoring (View Logs)
+To see what the server is doing in real-time (like what prompts it is generating):
+```bash
+pm2 logs pixel-art
+```
+*(Press `Ctrl+C` to stop watching)*
