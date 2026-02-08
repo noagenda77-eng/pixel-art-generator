@@ -56,12 +56,19 @@ async function generateDynamicPrompt() {
     try {
         const exclusions = recentTopics.length > 0 ? `Do NOT use these recent topics: ${recentTopics.join(', ')}` : "";
 
-        const styles = [
-            '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
+        '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
             'Atari 2600', 'Vector Arcade', 'Cel Shaded', 'Hand Drawn Indie', 'CRT Filter', 'Scanlines',
             'LCD Screen', 'Dithering', 'Isometric', '2.5D', 'Paper Mario Style', 'Y2K Aesthetic',
             'Glitch Art', 'Retro FPS', 'Text Adventure', 'ASCII Art', 'Wireframe', 'Minecraft Style',
-            'Roblox Style', 'N64 Blur', 'Sega Genesis', 'SNES Mode 7', 'Commodore 64'
+            'Roblox Style', 'N64 Blur', 'Sega Genesis', 'SNES Mode 7', 'Commodore 64',
+            'Virtual Boy Red', 'EGA Graphics', 'Amiga HAM', 'Neo Geo', 'ZX Spectrum',
+            'MS-DOS', 'Famicom', 'Intellivision', 'ColecoVision', 'Pico-8',
+            'GB Studio', 'Mode 13h', 'VooDoo Graphics', 'Early 3D', 'Sega Saturn',
+            'Dreamcast', 'GameCube', 'Xbox Original', 'PS2', 'PSP',
+            'Vectrex', 'Odyssey 2', 'Apple II', 'Commodore PET', 'TI-99/4A',
+            'BBC Micro', 'Atari ST', 'Sharp X68000', 'FM Towns', 'PC-98',
+            'Wonderswan', 'Game Gear', 'Lynx', 'Jaguar', '3DO',
+            'CD-i', 'LaserDisc', 'Text Mode', 'ASCII Roguelike', 'ANSI Art'
         ];
         const levels = [
             'Tutorial Level', 'Boss Arena', 'Safe Room', 'Item Shop', 'Character Select Screen',
@@ -71,7 +78,15 @@ async function generateDynamicPrompt() {
             'Empty Server', 'Corrupted Save File', 'Waiting Lobby', 'Final Destination',
             'Secret Level', 'Retro Arcade', 'Esports Arena', 'Speedrun Route', 'Hub World',
             'Loading Screen', 'Game Over Screen', 'Victory Podium', 'Inventory Screen', 'Skill Tree',
-            'Map Screen', 'Cutscene', 'QTE Sequence', 'Crafting Bench', 'Loot Cave', 'Gachapon Shop'
+            'Map Screen', 'Cutscene', 'QTE Sequence', 'Crafting Bench', 'Loot Cave', 'Gachapon Shop',
+            'Toxic Swamp', 'Volcano Interior', 'Cloud City', 'Casino Zone', 'Construction Site',
+            'Abandoned Hospital', 'Military Base', 'Alien Mothership', 'Parallel Dimension', 'Dream World',
+            'Mirror Mode', 'Upside Down Castle', 'Rainbow Road', 'Ghost Valley', 'Mushroom Kingdom',
+            'Green Hill Zone', 'Dust 2', 'Nuketown', 'Facing Worlds', 'Facility',
+            'Lost Woods', 'Water Temple', 'Spirit Temple', 'Shadow Temple', 'Fire Temple',
+            'Gerudo Valley', 'Hyrule Field', 'Kakariko Village', 'Lon Lon Ranch', 'Zora Domain',
+            'Death Mountain', 'Goron City', 'Kokiri Forest', 'Temple of Time', 'Castle Courtyard',
+            'Ganon Tower', 'Inside the Deku Tree', 'Jabu-Jabu Belly', 'Bottom of the Well', 'Ice Cavern'
         ];
         const elements = [
             'Power-up', 'Health Potion', 'Mana Potion', 'Epic Loot', 'Quest Item',
@@ -83,7 +98,15 @@ async function generateDynamicPrompt() {
             'Critical Hit', 'Double Jump', 'Wall Run', 'Rocket Jump', 'Teabagging',
             'Rage Quit', 'Speed Potion', 'Extra Life', 'Game Cartridge', 'Joystick',
             'Keyboard & Mouse', 'VR Headset', 'CRT Monitor', 'Pixel', 'Voxel',
-            'Sprite', 'Texture', 'Mesh', 'Polygon', 'Shader'
+            'Sprite', 'Texture', 'Mesh', 'Polygon', 'Shader',
+            'Blue Shell', 'Red Barrel', 'Exploding Barrel', 'Jump Pad', 'Teleporter',
+            'Portal', 'Grappling Hook', 'Jetpack', 'Flashlight', 'Night Vision Goggles',
+            'Medkit', 'Ammo Box', 'Keycard', 'Crowbar', 'Gravity Gun',
+            'Portal Gun', 'Energy Sword', 'Master Sword', 'Buster Sword', 'Hidden Blade',
+            'Pip-Boy', 'Gravity Hammer', 'Lancer', 'BFG 9000', 'Super Shotgun',
+            'Chainsaw', 'Rocket Launcher', 'Railgun', 'Plasma Rifle', 'Needler',
+            'Spartan Laser', 'Energy Shield', 'Active Camo', 'Overshield', 'Invisibility',
+            'Quad Damage', 'Haste', 'Regeneration', 'Flight', 'Invulnerability'
         ];
 
         // Always include Style, plus one other category
