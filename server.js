@@ -143,12 +143,6 @@ async function generateAnimation() {
             VISUAL STYLE: ${style}
             The animation MUST strictly adhere to the "${style}" visual style.
             
-            CRITICAL REQUIREMENT:
-            Draw the text "${topic}" in the bottom-left corner (around x=2, y=104).
-            Use a VERY SMALL font: "8px monospace" or similar pixel font.
-            The text color must be readable against the background (e.g., White with Black outline/shadow, or vice versa).
-            The text must be clearly visible but unobtrusive.
-
             The \`frame\` argument is an incrementing integer. 
             Do not use any external libraries. Use only standard Canvas API. 
             The canvas size is strictly 192x108.
