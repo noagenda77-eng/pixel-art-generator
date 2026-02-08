@@ -81,17 +81,29 @@ function loadAnimation(index) {
                 const drawFunc = func();
 
                 let frame = 0;
-                function loop() {
-                    ctx.clearRect(0, 0, 192, 108);
-                    try {
-                        drawFunc(ctx, frame);
-                    } catch (e) {
-                        console.error("Animation error", e);
-                    }
-                    frame++;
+                let lastTime = 0;
+                const fps = 30;
+                const interval = 1000 / fps;
+
+                function loop(timestamp) {
                     requestID = requestAnimationFrame(loop);
+
+                    if (!lastTime) lastTime = timestamp;
+                    const elapsed = timestamp - lastTime;
+
+                    if (elapsed > interval) {
+                        lastTime = timestamp - (elapsed % interval);
+
+                        ctx.clearRect(0, 0, 192, 108);
+                        try {
+                            drawFunc(ctx, frame);
+                        } catch (e) {
+                            console.error("Animation error", e);
+                        }
+                        frame++;
+                    }
                 }
-                loop();
+                requestID = requestAnimationFrame(loop);
 
             } catch (e) {
                 console.error("Error parsing animation script", e);
