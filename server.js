@@ -57,11 +57,8 @@ async function generateDynamicPrompt() {
         const exclusions = recentTopics.length > 0 ? `Do NOT use these recent topics: ${recentTopics.join(', ')}` : "";
 
         const styles = [
-            '8-bit', '16-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
-            'Atari 2600', 'Vector Arcade', 'LCD Screen', 'Isometric', '2.5D', 'Y2K Aesthetic',
-            'Glitch Art', 'Text Adventure', 'Minecraft Style', 'N64 Blur', 'SNES Mode 7', 'Commodore 64',
-            'Virtual Boy Red', 'EGA Graphics', 'Early 3D',
-            'Vectrex', 'PC-98', 'ASCII Roguelike'
+            '8-bit', 'Low Poly', 'Voxel', 'PS1 Aesthetic', 'Game Boy Green', 'CGA Graphics',
+            'Atari 2600', 'Isometric', '2.5D', 'Y2K Aesthetic', 'N64 Blur', 'SNES Mode 7', 'Commodore 64', 'Virtual Boy Red', 'EGA Graphics', 'Early 3D', 'Vectrex', 'PC-98', 'ASCII Roguelike'
         ];
         const levels = [
             'Tutorial Level', 'Boss Arena', 'Safe Room', 'Item Shop', 'Character Select Screen',
@@ -201,6 +198,8 @@ function cleanupOldFiles() {
             }))
             .sort((a, b) => b.time - a.time); // Newest first
 
+        // Cleanup disabled: Storing files permanently
+        /*
         if (jsFiles.length > 20) {
             const toDelete = jsFiles.slice(20);
             toDelete.forEach(file => {
@@ -210,6 +209,7 @@ function cleanupOldFiles() {
                 });
             });
         }
+        */
     });
 }
 
@@ -221,8 +221,9 @@ async function ensureBuffer() {
         const count = jsFiles.length;
         console.log(`Current animation count: ${count}`);
 
-        if (count < 20) {
-            const needed = 20 - count;
+        const TARGET_COUNT = 120; // Increased to 120 to add 100 new animations
+        if (count < TARGET_COUNT) {
+            const needed = TARGET_COUNT - count;
             console.log(`Generating ${needed} animations to fill buffer...`);
             for (let i = 0; i < needed; i++) {
                 await generateAnimation();
