@@ -242,8 +242,8 @@ app.listen(PORT, () => {
     ensureBuffer();
 });
 
-// Cron Job: Every 5 minutes
-cron.schedule('*/5 * * * *', () => {
+// Cron Job: Every hour
+cron.schedule('0 * * * *', () => {
     console.log('Running scheduled animation generation...');
     generateAnimation();
 });
